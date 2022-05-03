@@ -1,0 +1,15 @@
+.layout {
+  width: 100%;
+
+  .app-header {
+    z-index: 9;
+    width: 100%;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+  }
+
+  .app-content {
+    z-index: 0;
+  }
+}

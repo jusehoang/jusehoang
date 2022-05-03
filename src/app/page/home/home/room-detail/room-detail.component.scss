@@ -1,0 +1,43 @@
+::ng-deep .room-detail {
+  width: 80%;
+  margin: auto;
+  margin-top: 23px;
+  overflow: hidden;
+
+  .store {
+    display: flex;
+    padding: 30px 30px 30px 0;
+
+    .name-store {
+      margin: 14px;
+    }
+  }
+
+  .button-group {
+    padding:20px 20px 20px 0;
+  }
+
+  .ant-list-item {
+    padding: 12px;
+  }
+}
+
+nz-card {
+  box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+}
+
+.button {
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.contacts-container {
+  text-align: center;
+  font-style: italic;
+}
+
+nz-date-picker {
+  width: 100%;
+}
+
+

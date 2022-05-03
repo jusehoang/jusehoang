@@ -1,0 +1,100 @@
+<div class="room-detail">
+  <nz-card>
+    <div nz-row class="row">
+      <div nz-col nzSpan="12" class="col">
+        <img nz-image [nzSrc]="room.images" alt="" width="100%" height="400px">
+      </div>
+      <div nz-col nzSpan="12" class="col" style="padding: 20px;">
+        <h1>{{ room.room_name }}</h1>
+        <h2><span nz-typography nzType="danger">{{ room.price | number}}đ</span>/1 tháng</h2>
+        <h3><i class="fas fa-map-marker-alt"></i> {{ room.location }}</h3>
+        <div class="store">
+          <nz-avatar [nzSize]="64" [nzSrc]="room.images" nzIcon="user"></nz-avatar>
+          <h2 class="name-store">{{ room.store }}</h2>
+        </div>
+        <div class="button-group">
+          <button nz-button class="button" nzSize="large" (click)="visible = !visible" nzType="default"><i class="fas fa-phone-alt"></i>&nbsp; HỖ TRỢ</button>
+          <!-- <button nz-button class="button" nzSize="large" nzType="default"><i class="fas fa-comment"></i>&nbsp; CHAT</button> -->
+          <button nz-button class="button" nzSize="large" (click)="showModal()" nzType="primary">ĐẶT PHÒNG</button>
+        </div>
+      </div>
+    </div>
+    <h2 style="margin: 10px 0;">Chi tiết phòng</h2>
+    <nz-list>
+      <nz-list-item>
+        <span nz-typography>Có chỗ để xe</span>
+      </nz-list-item>
+      <nz-list-item style="background-color: #e9e5e5">
+        <span nz-typography>Loại phòng</span>
+        {{ room.type }}
+      </nz-list-item>
+      <nz-list-item>
+        <span nz-typography>Số người tối đa</span>
+        {{ room.max_number_people }}
+      </nz-list-item>
+      <nz-list-item style="background-color: #e9e5e5">
+        <span nz-typography>Giá điện</span>
+        {{ room.electric_price }}đ
+      </nz-list-item>
+      <nz-list-item>
+        <span nz-typography>Giá nước</span>
+        {{ room.water_price }}đ
+      </nz-list-item>
+      <nz-list-item style="background-color: #e9e5e5">
+        <span nz-typography>Giá mạng</span>
+        {{ room.network_price }}đ
+      </nz-list-item>
+      <nz-list-item>
+        <span nz-typography>Mô tả</span>
+        {{ room.description }}
+      </nz-list-item>
+    </nz-list>
+  </nz-card>
+  <nz-drawer
+      [nzClosable]="false"
+      [nzVisible]="visible"
+      nzPlacement="bottom"
+      (nzOnClose)="visible = !visible"
+      nzWidth="100%"
+      nzHeight="75px"
+      [nzOffsetY]=0
+    >
+      <ng-container class="contacts-container" *nzDrawerContent>
+          <div nz-row>
+            <div nz-col nzSpan="8" class="contacts-container">CONTACT US</div>
+            <div nz-col nzSpan="8" class="contacts-container">{{ room.store }}</div>
+            <div nz-col nzSpan="8" class="contacts-container">0123456789</div>
+          </div>
+      </ng-container>
+    </nz-drawer>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="ĐẶT PHÒNG" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="ĐẶT PHÒNG NGAY" nzCancelText="Hủy" nzWidth="40%">
+      <ng-container *nzModalContent>
+        <form nz-form [formGroup]="formBookRoom">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fullName">Họ và tên</nz-form-label>
+            <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Tên không được để trống!">
+              <input nz-input formControlName="fullName" id="fullName" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="tel">Số điện thoại</nz-form-label>
+            <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Số điện thoại không được để trống!">
+              <input nz-input formControlName="tel" id="tel" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fullName">Ngày bắt đầu thuê</nz-form-label>
+            <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Ngày bắt đầu thuê không được để trống!">
+              <nz-date-picker formControlName="startDate" id="startDate" [nzFormat]="dateFormat"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="note">Ghi chú</nz-form-label>
+            <nz-form-control [nzSm]="20" [nzXs]="24">
+              <textarea rows="4" nz-input formControlName="note" id="note"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </ng-container>
+    </nz-modal>
+</div>

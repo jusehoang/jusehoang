@@ -1,0 +1,58 @@
+<div class="header">
+  <div class="logo"></div>
+  <div class="menu">
+    <ul nz-menu nzMode="horizontal">
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['home']">TRANG CHỦ</a>
+      </li>
+      <!-- <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/', 'components', 'menu', 'zh']">TIN NHẮN</a>
+      </li> -->
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/', 'components', 'menu', 'zh']">LIÊN HỆ</a>
+      </li>
+    </ul>
+  </div>
+  <div class="login">
+    <ng-container *ngIf="isLogin; else noPG13">
+      <div class="user" nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomCenter">
+        <div class="avatar">
+          <!-- <i nz-icon nzType="user" nzTheme="outline"></i> -->
+          <nz-avatar [nzSrc]="avatar" nzIcon="user"></nz-avatar>
+        </div>
+        <div class="username"><h3>{{ username }}</h3></div>
+      </div>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="manageBookRoom()">Quản lý phòng đang thuê</li>
+          <li nz-menu-item (click)="historyBookRoom()">Lịch sử đặt phòng</li>
+          <li nz-menu-item (click)="editProfile()">Edit Profile</li>
+          <li nz-menu-item (click)="changePassword()">Change Password</li>
+          <li nz-menu-item (click)="logout()">Logout</li>
+        </ul>
+      </nz-dropdown-menu>
+    </ng-container>
+    <ng-template #noPG13>
+      <ul nz-menu nzMode="horizontal">
+        <li nz-menu-item nzMatchRouter>
+          <a [routerLink]="['login']">ĐĂNG NHẬP</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a [routerLink]="['register']">ĐĂNG KÍ</a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+</div>
+<!-- <div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <div class="logo"></div>
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/', 'components', 'menu', 'en']">English Menu Document</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/', 'components', 'menu', 'zh']">Chinese Menu Document</a>
+    </li>
+    <div class="login"></div>
+  </ul>
+</div> -->

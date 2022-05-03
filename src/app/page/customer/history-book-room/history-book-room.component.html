@@ -1,0 +1,24 @@
+<div class="history-book-room">
+  <nz-card>
+    <nz-table #basicTable [nzData]="listRoom">
+      <thead>
+        <tr>
+          <th>Ảnh phòng</th>
+          <th>Tên phòng</th>
+          <th>Giá</th>
+          <th>Store</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td><img nz-image [nzSrc]="data.images" alt="" width="200px" height="150px"></td>
+          <td>{{data.room_name}}</td>
+          <td>{{data.price}}</td>
+          <td>{{data.store}}</td>
+          <td>{{data.price}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+</div>

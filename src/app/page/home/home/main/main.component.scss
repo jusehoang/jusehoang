@@ -1,0 +1,138 @@
+[nz-carousel-content] {
+  height: 100%;
+  overflow: hidden;
+}
+.main {
+  .carousel {
+    width: 100%;
+    height: 300px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .search-bar {
+    width: 80%;
+    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+    margin: auto;
+    margin-top: -35px;
+
+    .location {
+      width: 700px;
+      border-right: 1px solid black;
+      display: flex;
+
+      input {
+        border: 0px;
+      }
+    }
+
+    .type-room {
+      width: 350px;
+      border-right: 1px solid black;
+    }
+
+    .number-people {
+      width: 200px;
+      border-right: 1px solid black;
+    }
+
+    .search {
+      width: 120px;
+      border-right: 1px solid black;
+
+      [nz-button] {
+        border: none;
+        margin-left: 5px;
+      }
+    }
+
+    .cancel {
+      [nz-button] {
+        border: none;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .list-room {
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .col {
+      padding: 10px;
+    }
+  }
+
+  .pagenation {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+nz-pagination {
+  float: right;
+  padding: 0 10px;
+}
+
+nz-select {
+  width: 100%;
+}
+
+::ng-deep .ant-input-group-addon {
+  background-color: #fff;
+  border: 0;
+}
+
+::ng-deep .ant-input {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .main {
+    .search-bar {
+      .location {
+        width: 500px;
+        border-right: 1px solid black;
+        display: flex;
+
+        input {
+          border: 0px;
+        }
+      }
+
+      .type-room {
+        width: 200px;
+        border-right: 1px solid black;
+      }
+
+      .number-people {
+        width: 150px;
+        border-right: 1px solid black;
+      }
+
+      .search {
+        width: 120px;
+        border-right: 1px solid black;
+
+        [nz-button] {
+          border: none;
+          margin-left: 5px;
+        }
+      }
+
+      .cancel {
+        [nz-button] {
+          border: none;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+// img {
+//   position: relative;
+//   height: 100vh;
+// }
+.login {
+  width: 100%;
+  height: calc(100vh - 48px);
+  background-image: url(https://toigingiuvedep.vn/wp-content/uploads/2021/05/hinh-nen-vu-tru-khong-gian-huyen-ao.jpg);
+  background-size: 100% 100%;
+}
+
+nz-card {
+  position: absolute;
+  width: 20%;
+  top: 35%;
+  left: 40%;
+}
+
+h2 {
+  text-align: center;
+  color: #9c27b0;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+p {
+  text-align: center;
+  margin-top: 5px;
+}
+
+a {
+  text-align: center;
+}

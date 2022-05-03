@@ -1,0 +1,65 @@
+<nz-card>
+  <div nz-row class="container">
+    <div nz-col nzSpan="12" class="search">
+      <input nz-input type="text" FormControl="search" placeholder="Tìm kiếm">
+    </div>
+    <div nz-col nzSpan="12" class="add-room">
+      <a nz-button style="float: right" nzType="primary" [routerLink]="['/store', 'add-room']">THÊM MỚI PHÒNG</a>
+    </div>
+  </div>
+  <div class="list-room">
+    <nz-table #basicTable [nzData]="listRoom" [nzTotal]="total">
+      <thead>
+        <tr>
+          <th nzWidth="20%" nzAlign="center">Ảnh phòng</th>
+          <th nzWidth="20%" nzAlign="center">Tên phòng</th>
+          <th nzWidth="15%" nzAlign="center">Giá</th>
+          <th nzWidth="35%" nzAlign="center">Địa chỉ</th>
+          <th nzWidth="10%" nzAlign="center">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td nzAlign="center"><img nz-image [nzSrc]="data.images" alt="" width="200px" height="150px"></td>
+          <td nzAlign="center">{{data.room_name}}</td>
+          <td nzAlign="center">{{data.price}}</td>
+          <td nzAlign="center">{{data.location}}</td>
+          <td nzAlign="center">
+            <a nz-button nzType="primary" style="margin-right: 10px;" [routerLink]="['/store', 'edit-room']" [queryParams]="{ id : data.id}"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+            <button nz-button nzType="primary" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</nz-card>
+<!-- <nz-modal [(nzVisible)]="isVisible" nzTitle="ĐẶT PHÒNG" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="THÊM PHÒNG" nzCancelText="HỦY" nzWidth="40%">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="formAddRoom">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fullName">Họ và tên</nz-form-label>
+        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Tên không được để trống!">
+          <input nz-input formControlName="fullName" id="fullName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="tel">Số điện thoại</nz-form-label>
+        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Số điện thoại không được để trống!">
+          <input nz-input formControlName="tel" id="tel" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fullName">Ngày bắt đầu thuê</nz-form-label>
+        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Ngày bắt đầu thuê không được để trống!">
+          <nz-date-picker formControlName="startDate" id="startDate" [nzFormat]="dateFormat"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="note">Ghi chú</nz-form-label>
+        <nz-form-control [nzSm]="20" [nzXs]="24">
+          <textarea rows="4" nz-input formControlName="note" id="note"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal> -->

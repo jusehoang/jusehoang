@@ -1,0 +1,52 @@
+<div class="manage-book-room">
+  <nz-card>
+    <table *ngIf="listRoom">
+      <thead>
+        <tr>
+          <th style="width: 250px">Ảnh phòng</th>
+          <th style="width: 100px">Tên phòng</th>
+          <th style="width: 150px">Giá</th>
+          <th style="width: 200px">Store</th>
+          <th style="width: 200px">Trạng thái</th>
+          <th style="width: 200px">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of listRoom">
+          <td style="text-align: center"><img nz-image [nzSrc]="data.images" alt="" width="200px" height="150px"></td>
+          <td style="text-align: center">{{data.room_name}}</td>
+          <td style="text-align: center">{{data.price}}</td>
+          <td style="text-align: center">{{data.store}}</td>
+          <td style="text-align: center">{{data.price}}</td>
+          <td style="text-align: center"><button nz-button nzType="primary" (click)="showMoneyBookRoom(data)">Xem tiền trọ</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </nz-card>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Tiền trọ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="70%">
+  <ng-container *nzModalContent>
+      <nz-table #basicTable [nzData]="listMoney">
+        <thead>
+          <tr>
+            <th>Tháng</th>
+            <th>Tiền phòng</th>
+            <th>Tiền điện</th>
+            <th>Tiền nước</th>
+            <th>Tiền điện</th>
+            <th>Tổng tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td></td>
+            <!-- <td>{{data.room_name}}</td>
+            <td>{{data.price}}</td>
+            <td>{{data.store}}</td>
+            <td>{{data.price}}</td> -->
+            <td><button nz-button nzType="primary" (click)="showMoneyBookRoom(data)">Xem tiền trọ</button></td>
+          </tr>
+        </tbody>
+      </nz-table>
+  </ng-container>
+</nz-modal>

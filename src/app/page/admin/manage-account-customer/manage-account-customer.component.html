@@ -1,0 +1,36 @@
+<nz-card>
+  <div nz-row class="container">
+    <div nz-col nzSpan="12" class="search">
+      <input nz-input type="text" FormControl="search" placeholder="Tìm kiếm">
+    </div>
+    <div nz-col nzSpan="12" class="add-room">
+      <a nz-button style="float: right" nzType="primary" [routerLink]="['/admin', 'add-account']">THÊM TÀI KHOẢN</a>
+    </div>
+  </div>
+  <div class="list-room">
+    <nz-table #basicTable [nzData]="listRoom">
+      <thead>
+        <tr>
+          <th nzWidth="20%" nzAlign="center">Ảnh phòng</th>
+          <th nzWidth="20%" nzAlign="center">Tên phòng</th>
+          <th nzWidth="15%" nzAlign="center">Giá</th>
+          <th nzWidth="35%" nzAlign="center">Địa chỉ</th>
+          <th nzWidth="10%" nzAlign="center">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td nzAlign="center"></td>
+          <td nzAlign="center">{{data.room_name}}</td>
+          <td nzAlign="center">{{data.price}}</td>
+          <td nzAlign="center">{{data.location}}</td>
+          <td nzAlign="center">
+            <button nz-button nzType="primary" style="margin-right: 10px;"><i nz-icon nzType="edit" nzTheme="fill"></i></button>
+            <button nz-button nzType="primary" nzDanger><i nz-icon nzType="delete" nzTheme="fill"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</nz-card>
+

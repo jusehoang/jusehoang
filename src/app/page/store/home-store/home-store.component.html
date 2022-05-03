@@ -1,0 +1,65 @@
+<nz-layout>
+  <nz-sider nzCollapsible nzTheme="light" nzWidth="200px">
+    <div class="logo"></div>
+    <ul nz-menu nzMode="inline" nzSelectable="false">
+      <li nz-menu-item [routerLink]="['/store/manage-room']" routerLinkActive="ant-menu-item-selected">
+        <i nz-icon nzType="menu" nzTheme="outline"></i>
+        <span>Quản lý phòng</span>
+      </li>
+      <li nz-menu-item [routerLink]="['/store/manage-book-room']" routerLinkActive="ant-menu-item-selected">
+        <i nz-icon nzType="menu" nzTheme="outline"></i>
+        <span>Phòng đang thuê</span>
+      </li>
+      <li nz-menu-item [routerLink]="['/store/manage-monney-room']" routerLinkActive="ant-menu-item-selected">
+        <i nz-icon nzType="menu" nzTheme="outline"></i>
+        <span>Quản lý tiền phòng</span>
+      </li>
+      <li nz-menu-item [routerLink]="['/store/sale']" routerLinkActive="ant-menu-item-selected">
+        <i nz-icon nzType="line-chart" nzTheme="outline"></i>
+        <span>Thống kê doanh thu</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div nz-row>
+        <div nz-col nzSpan="18"></div>
+        <div nz-col nzSpan="6">
+          <div class="login">
+            <ng-container *ngIf="isLogin">
+              <div class="user" nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomCenter">
+                <div class="avatar">
+                  <nz-avatar nzIcon="user"></nz-avatar>
+                </div>
+                <div class="username"><h3>{{username}}</h3></div>
+              </div>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item (click)="editProfile()">Edit Profile</li>
+                  <li nz-menu-item (click)="changePassword()">Change Password</li>
+                  <li nz-menu-item (click)="logout()">Logout</li>
+                </ul>
+              </nz-dropdown-menu>
+            </ng-container>
+            <ng-template #noPG13>
+              <ul nz-menu nzMode="horizontal">
+                <li nz-menu-item nzMatchRouter>
+                  <a [routerLink]="['login']">ĐĂNG NHẬP</a>
+                </li>
+                <li nz-menu-item nzMatchRouter>
+                  <a [routerLink]="['register']">ĐĂNG KÍ</a>
+                </li>
+              </ul>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+  </nz-layout>
+</nz-layout>

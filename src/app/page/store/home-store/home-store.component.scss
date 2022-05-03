@@ -1,0 +1,61 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+  line-height: 32px;
+}
+
+nz-content {
+  margin: 0 16px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-content {
+  margin: 0;
+}
+
+.inner-content {
+  // padding: 12px;
+  background: #fff;
+  height: calc(100vh - 86px);
+  // margin-top: 12px;
+}
+
+nz-footer {
+  text-align: center;
+  padding: 0;
+}
+
+.login {
+
+  .user {
+    display: flex;
+    width: 180px;
+    border: 1px solid black;
+    margin-top: 10px;
+    border-radius: 13px;
+
+    .avatar {
+      margin: 3px 10px;
+    }
+
+    .username {
+      h3 {
+        margin-bottom: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  ul > li > a {
+    font-weight: 700;
+  }
+}

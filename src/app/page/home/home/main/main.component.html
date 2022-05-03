@@ -1,0 +1,82 @@
+<div class="main">
+  <div class="carousel">
+    <nz-carousel nzAutoPlay nzDots="false">
+      <div nz-carousel-content>
+        <img src="https://www.hotelgrandsaigon.com/wp-content/uploads/sites/227/2017/12/GRAND_SEDK_01.jpg" alt="">
+      </div>
+      <div nz-carousel-content>
+        <img src="https://www.hoteljob.vn/files/Anh-HTJ-Hong/mau-tam-trang%20tri-giuong-khach-san-dep-nhat-19.jpg" alt="">
+      </div>
+      <div nz-carousel-content>
+        <img src="https://ezcloud.vn/wp-content/uploads/2019/07/4649_abc-1.jpg" alt="">
+      </div>
+      <div nz-carousel-content>
+        <img src="https://dulichkhampha24.com/wp-content/uploads/2020/03/khach-san-da-nang-2-sao-gan-trung-tam-c.jpg" alt="">
+      </div>
+    </nz-carousel>
+  </div>
+  <div class="search-bar">
+    <nz-card>
+      <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
+      <nz-space>
+        <div class="location">
+          <!-- <i class="fas fa-map-marker-alt"></i>
+          <input nz-input placeholder="Basic usage" [(ngModel)]="location"/> -->
+          <nz-input-group [nzAddOnBefore]="suffixIconSearch">
+            <input type="text" nz-input [(ngModel)]="location" placeholder="Nhập khu vực tìm kiếm"/>
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <i class="fas fa-map-marker-alt"></i>
+          </ng-template>
+        </div>
+        <div class="type-room" [(ngModel)]="type">
+          <nz-select [nzBorderless]="true" nzPlaceHolder="Lựa chọn loại phòng">
+            <nz-option nzValue="nomal" nzLabel="nomal"></nz-option>
+            <nz-option nzValue="royal" nzLabel="royal"></nz-option>
+          </nz-select>
+        </div>
+        <div class="number-people">
+          <nz-select [nzBorderless]="true" nzPlaceHolder="Số người" [(ngModel)]="number" (ngModelChange)="changeNumber($event)">
+            <nz-option nzValue="1" nzLabel="1"></nz-option>
+            <nz-option nzValue="2" nzLabel="2"></nz-option>
+            <nz-option nzValue="3" nzLabel="3"></nz-option>
+            <nz-option nzValue="4" nzLabel="4"></nz-option>
+            <nz-option nzValue="5" nzLabel="5"></nz-option>
+            <nz-option nzValue="6" nzLabel="6"></nz-option>
+            <nz-option nzValue="7" nzLabel="7"></nz-option>
+          </nz-select>
+        </div>
+        <div class="search">
+          <button nz-button nzType="default" (click)="searchRoom()">
+            <i nz-icon nzType="search" nzTheme="outline"></i>
+            Tìm kiếm
+          </button>
+        </div>
+        <div class="cancel">
+          <button nz-button nzType="default" (click)="cancel()">
+            <i nz-icon nzType="close" nzTheme="outline"></i>
+            Hủy
+          </button>
+        </div>
+      </nz-space>
+    </nz-card>
+  </div>
+  <div class="list-room">
+    <div class="row" nz-row >
+      <div class="col" nz-col [nzSpan]="8" *ngFor="let room of listRoom">
+        <nz-card nzHoverable style="width:100%" [nzCover]="coverTemplate"
+        [routerLink]="['/room-detail']" [queryParams]="{id: room.id}">
+          <h2>{{ room.room_name }}-{{room.store}}</h2>
+          <p><span nz-typography nzType="danger">{{ room.price | number}}đ</span>/1 tháng</p>
+          <p><i class="fas fa-map-marker-alt"></i> {{ room.location }}</p>
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="example" [src]="room.images" width='100%' height='300px'/>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="pagenation">
+    <nz-pagination [nzPageIndex]="1" [nzTotal]="total" [nzPageSize]="9" (nzPageIndexChange)="changeIndexPage($event)"></nz-pagination>
+  </div>
+</div>
