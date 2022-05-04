@@ -42,7 +42,7 @@ export class EditProfileComponent implements OnInit {
       id_card: [''],
       birth_day: [''],
       address: [''],
-      username: ['', Validators.required],
+      username: [''],
       avatar: ['']
     });
     this.user.avatar.subscribe(data => {
@@ -62,7 +62,8 @@ export class EditProfileComponent implements OnInit {
         address: this.currentUser.address,
         username: this.currentUser.username,
         avatar: this.currentUser.avatar,
-      })
+      });
+      this.form.get('username')?.disable();
     })
   }
 
@@ -124,8 +125,7 @@ export class EditProfileComponent implements OnInit {
         this.user.avatar.subscribe(data => {
           avatar = data;
         })
-        const user: User = {
-          username: this.form.value.user_name,
+        const user = {
           full_name: this.form.value.full_name,
           address: this.form.value.address,
           tel: this.form.value.tel,

@@ -1,13 +1,8 @@
 <div class="register">
   <nz-card>
     <div class="avatar">
-      <!-- <nz-avatar [nzSize]="128" nzIcon="user"></nz-avatar> -->
       <div class="avatar">
         <nz-avatar [nzSrc]="avatar" [nzSize]="128" nzIcon="user"></nz-avatar>
-        <!-- <nz-avatar [nzSize]="128" nzIcon="user"></nz-avatar>
-        <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload" [nzShowUploadList]="false" nzName="avatar">
-
-        </nz-upload> -->
       </div>
     </div>
     <form nz-form [formGroup]="form" (ngSubmit)="doUpdate()">
@@ -48,9 +43,9 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">Tên đăng nhập</nz-form-label>
-        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Tên đăng nhập không được để trống!">
-          <input nz-input formControlName="username" id="username" />
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username">Tên đăng nhập</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <input nz-input formControlName="username" id="username"/>
         </nz-form-control>
       </nz-form-item>
       <button nz-button class="register-form-button" type="submit" [nzType]="'primary'">Cập nhật</button>

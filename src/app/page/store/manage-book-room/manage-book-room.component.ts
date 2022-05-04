@@ -33,7 +33,7 @@ export class ManageBookRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomService.getRoomHire().subscribe(room => {
-      console.log(room)
+      console.log(room);
     })
   }
 

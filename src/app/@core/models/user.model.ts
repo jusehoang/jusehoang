@@ -7,7 +7,7 @@ export interface User {
   id_card?: string;
   role?: string;
   avatar?: string;
-  username: string;
+  username?: string;
   password?: string;
   is_request: boolean;
 }

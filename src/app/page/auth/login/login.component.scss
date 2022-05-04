@@ -33,3 +33,10 @@ p {
 a {
   text-align: center;
 }
+
+@media screen and (max-width: 1366px) {
+  nz-card {
+    width: 30%;
+    left: 35%;
+  }
+}

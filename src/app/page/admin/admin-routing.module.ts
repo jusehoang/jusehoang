@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminHomeComponent } from "./admin-home/admin-home.component";
 import { ListAdministratorsComponent } from "./list-administrators/list-administrators.component";
+import { ManageAccountCustomerComponent } from "./manage-account-customer/manage-account-customer.component";
 import { ManageAccountStoreComponent } from "./manage-account-store/manage-account-store.component";
 import { ManageUiComponent } from "./manage-ui/manage-ui.component";
 import { RequestStoreComponent } from "./request-store/request-store.component";
@@ -17,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'manage-account-customer',
-        component: ManageAccountStoreComponent
+        component: ManageAccountCustomerComponent
       },
       {
         path: 'list-account-admin',

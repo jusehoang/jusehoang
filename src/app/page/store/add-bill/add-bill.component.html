@@ -1,1 +1,67 @@
-<p>add-bill works!</p>
+<nz-card>
+  <h1>Tạo hóa đơn</h1>
+  <form nz-form [formGroup]="form" (ngSubmit)="addBill()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="room_name">Tên phòng</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Tên phòng không được để trống!">
+        <input nz-input type="text" formControlName="room_name" id="room_name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="price">Giá phòng</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Giá phòng không được để trống!">
+        <input nz-input type="text" formControlName="price" id="price" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="water_price">Giá nước</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Giá nước không được để trống!">
+        <input nz-input type="text" formControlName="water_price" id="water_price" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="electric_price">Giá điện</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Giá điện không được để trống!">
+        <input nz-input type="text" formControlName="electric_price" id="electric_price" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="network_price">Giá mạng</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Tên không được để trống!">
+        <input nz-input type="text" formControlName="network_price" id="network_price" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="max_number_people">Số người ở tối đa</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Số người ở tối đa không được để trống!">
+        <input nz-input type="number" max="50" min="0" formControlName="max_number_people" id="max_number_people" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="type">Loại phòng</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Loại phòng không được để trống!">
+        <input nz-input formControlName="type" id="type" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="location">Địa chỉ</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Địa chỉ không được để trống!">
+        <input nz-input formControlName="location" id="location" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="description">Ghi chú</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <textarea nz-input placeholder="" formControlName="description" id="description" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col nzSpan="4"></div>
+      <div nz-oel nzSpan="18">
+        <button nz-button type="submit" nzType="primary">Thêm mới</button>
+        <a nz-button [routerLink]="['/store', 'manage-room']" nzType="default">Hủy</a>
+      </div>
+    </div>
+  </form>
+</nz-card>
+
