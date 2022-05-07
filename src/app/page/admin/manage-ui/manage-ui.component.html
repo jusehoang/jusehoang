@@ -1,1 +1,24 @@
-<p>manage-ui works!</p>
+<nz-card>
+  <button style="margin-bottom: 20px;" nz-button nzType="primary" (click)="showModal()">Thêm mới</button>
+  <div class="carousel">
+    <nz-carousel nzAutoPlay>
+      <div nz-carousel-content *ngFor="let image of listImage">
+        <img nz-image [nzSrc]="image.image" alt="" width="100%">
+      </div>
+    </nz-carousel>
+  </div>
+  <div class="list-image">
+    <button nz-button nzType="default" style="width: 150px; height: 100px; margin-right: 10px;" *ngFor="let image of listImage" (click)="deleteImage(image.id)">
+      <img [src]="image.image" alt="" width="100px" height="60px">
+    </button>
+  </div>
+  <span>* Chọn ảnh dưới thumb để xóa</span>
+</nz-card>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Thêm mới Carousel" nzMaskClosable="false" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="70%">
+  <ng-container *nzModalContent>
+    <input nz-input type="text" [(ngModel)]="imageRoom" placeholder="Nhập link ảnh" style="margin-bottom: 20px">
+    <div nz-row style="margin-bottom: 20px; width: 100%; height:400px">
+      <img nz-image  [nzSrc]="imageRoom" alt="" [nzFallback]="fallback" style="margin: auto;">
+    </div>
+  </ng-container>
+</nz-modal>

@@ -69,7 +69,7 @@ export class RoomDetailComponent implements OnInit {
       });
     } else {
       if(this.id != null){
-        this.roomService.bookRoom(this.id, 'approve', this.formBookRoom.value.startDate, this.formBookRoom.value.note).subscribe(data => {
+        this.roomService.bookRoom(this.id, 'approved', this.formBookRoom.value.startDate, this.formBookRoom.value.note).subscribe(data => {
           console.log(data);
         });
       }

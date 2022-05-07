@@ -1,0 +1,154 @@
+<div class="register">
+  <nz-card>
+    <div class="avatar">
+      <div class="avatar">
+        <nz-avatar [nzSrc]="avatar" [nzSize]="128" nzIcon="user"></nz-avatar>
+      </div>
+    </div>
+    <h2>Thêm tài khoản Store</h2>
+    <form nz-form [formGroup]="form" (ngSubmit)="doUpdate()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="avatar">Nhập avatar</nz-form-label>
+        <nz-form-control [nzSm]="21" [nzXs]="24">
+          <input nz-input formControlName="avatar" id="avatar" [(ngModel)]="avatar" />
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fullName">Họ và tên</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Tên không được để trống!">
+              <input nz-input formControlName="full_name" id="fullName" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="tel">Số điện thoại</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Số điện thoại không được để trống!">
+              <input nz-input formControlName="tel" id="tel" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="idCard">CMT/CCCD</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input nz-input formControlName="id_card" id="idCard"/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="birthDay">Ngày sinh</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <nz-date-picker formControlName="birth_day" id="birthDay" [nzFormat]="dateFormat"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address">Địa chỉ thường trú</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input nz-input formControlName="address" id="address" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">Tên đăng nhập</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Tên đăng nhập không được để trống!">
+              <input nz-input formControlName="username" id="username"/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="password">Mật khẩu</nz-form-label>
+        <nz-form-control [nzSm]="21" [nzXs]="24" nzErrorTip="Mật khẩu không được để trống!">
+          <nz-input-group [nzSuffix]="suffixTemplate">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              nz-input
+              formControlName="password"
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible" (ngModelChange)="validateConfirmPassword()"></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="confirmPassword">Nhập lại Mật khẩu</nz-form-label>
+        <nz-form-control [nzSm]="21" [nzXs]="24" [nzErrorTip]="passwordErrorTpl">
+          <nz-input-group [nzSuffix]="suffixTemplate1">
+            <input
+              [type]="passwordVisible1 ? 'text' : 'password'"
+              nz-input
+              formControlName="confirmPassword"
+            />
+          </nz-input-group>
+          <ng-template #passwordErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
+          </ng-template>
+          <ng-template #suffixTemplate1>
+            <i nz-icon [nzType]="passwordVisible1 ? 'eye-invisible' : 'eye'" (click)="passwordVisible1 = !passwordVisible1"></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button class="register-form-button" type="submit" [nzType]="'primary'">Tạo tài khoản</button>
+      <button nz-button class="cancel-form-button" [nzType]="'primary'" nzDanger>Hủy</button>
+      <!-- <ng-container *ngIf="!isLogin; else editProfile">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="password">Mật khẩu</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Mật khẩu không được để trống!">
+            <nz-input-group [nzSuffix]="suffixTemplate">
+              <input
+                [type]="passwordVisible ? 'text' : 'password'"
+                nz-input
+                formControlName="password"
+              />
+            </nz-input-group>
+            <ng-template #suffixTemplate>
+              <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible" (ngModelChange)="validateConfirmPassword()"></i>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="confirmPassword">Nhập lại Mật khẩu</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="passwordErrorTpl">
+            <nz-input-group [nzSuffix]="suffixTemplate1">
+              <input
+                [type]="passwordVisible1 ? 'text' : 'password'"
+                nz-input
+                formControlName="confirmPassword"
+              />
+            </nz-input-group>
+            <ng-template #passwordErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+            <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
+            </ng-template>
+            <ng-template #suffixTemplate1>
+              <i nz-icon [nzType]="passwordVisible1 ? 'eye-invisible' : 'eye'" (click)="passwordVisible1 = !passwordVisible1"></i>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="register-form-button" [nzType]="'primary'">Đăng ký</button>
+        <button nz-button class="cancel-form-button" [nzType]="'primary'" nzDanger>Hủy</button>
+      </ng-container> -->
+    </form>
+  </nz-card>
+  <!-- <ng-template #register>
+    <h2>Register</h2>
+  </ng-template>
+  <ng-template #editProfile>
+    <button nz-button class="register-form-button" [nzType]="'primary'">Cập nhật</button>
+    <button nz-button class="cancel-form-button" [nzType]="'primary'" nzDanger>Hủy</button>
+  </ng-template> -->
+</div>
+

@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { Bill } from "../@core/models/bill.model";
+import { BookRoom } from "../@core/models/book-room.model";
 import { Room } from "../@core/models/room.model";
 
 @Injectable({
@@ -74,26 +76,13 @@ export class RoomService {
     return this.httpClient.post(url, obj);
   }
 
-  getRoomHire(){
-    const url = environment.baseUrl + '/api/room/find-hiring-room';
-    return this.httpClient.get(url);
+  getRoomHire(): Observable<Room[]> {
+    const url = environment.baseUrl + '/api/order/find-hiring-room';
+    return this.httpClient.get<Room[]>(url);
   }
 
-  getCurrentRoom(): Observable<{
-    room: Room,
-    bill: [],
-    end_date: string
-    note: string
-    start_date: string
-    status: string
-  }[]> {
+  getCurrentRoom(): Observable<BookRoom[]> {
     const url = environment.baseUrl + '/api/order/get-current-room';
-    return this.httpClient.get<{
-      room: Room,
-      bill: [],
-      end_date: string
-      note: string
-      start_date: string
-      status: string}[]>(url);
+    return this.httpClient.get<BookRoom[]>(url);
   }
 }

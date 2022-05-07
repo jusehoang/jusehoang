@@ -34,9 +34,9 @@
               <div class="user" nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomCenter">
                 <div class="avatar">
                   <!-- <i nz-icon nzType="user" nzTheme="outline"></i> -->
-                  <nz-avatar nzIcon="user"></nz-avatar>
+                  <nz-avatar [nzSrc]="avatar" nzIcon="user"></nz-avatar>
                 </div>
-                <div class="username"><h3>Hoang</h3></div>
+                <div class="username"><h3>{{ username }}</h3></div>
               </div>
               <nz-dropdown-menu #menu="nzDropdownMenu">
                 <ul nz-menu>

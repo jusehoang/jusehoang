@@ -52,4 +52,12 @@ export class ManageAccountCustomerComponent implements OnInit {
     })
   }
 
+  active(id: string | undefined) {
+    if(id !== undefined) {
+      this.admin.activeUser(id).subscribe(data => {
+        console.log(data);
+      })
+    }
+  }
+
 }

@@ -1,36 +1,42 @@
 <nz-card>
   <div nz-row class="container">
-    <div nz-col nzSpan="12" class="search">
-      <input nz-input type="text" FormControl="search" placeholder="Tìm kiếm">
+    <div nz-col nzSpan="18" class="search">
+      <input nz-input type="text" [formControl]="search" placeholder="Tìm kiếm">
+      <button nz-button nzType="primary" style="margin: 0 10px" (click)="searchByUsername()">Tìm kiếm theo Username</button>
+      <button nz-button nzType="primary" style="margin-left: 0; margin-right: 10px;" (click)="searchByAddress()">Tìm kiếm theo Địa chỉ</button>
+      <button nz-button nzType="primary" (click)="reset()">Reset</button>
     </div>
-    <div nz-col nzSpan="12" class="add-room">
-      <a nz-button style="float: right" nzType="primary" [routerLink]="['/admin', 'add-account']">THÊM TÀI KHOẢN</a>
+    <div nz-col nzSpan="6" class="add-room">
+      <!-- <a nz-button style="float: right" nzType="primary" [routerLink]="['/admin', 'add-account']">THÊM TÀI KHOẢN</a> -->
     </div>
   </div>
   <div class="list-room">
-    <nz-table #basicTable [nzData]="listRoom">
+    <nz-table #basicTable [nzData]="listUser" [nzTotal]="total" [nzPageSize]="10" (nzPageIndexChange)="changePageIndex($event)">
       <thead>
         <tr>
-          <th nzWidth="20%" nzAlign="center">Ảnh phòng</th>
-          <th nzWidth="20%" nzAlign="center">Tên phòng</th>
-          <th nzWidth="15%" nzAlign="center">Giá</th>
-          <th nzWidth="35%" nzAlign="center">Địa chỉ</th>
-          <th nzWidth="10%" nzAlign="center">Hành động</th>
+          <th nzWidth="20%" nzAlign="center">ID</th>
+          <th nzWidth="10%" nzAlign="center">Username</th>
+          <th nzWidth="15%" nzAlign="center">Họ và tên</th>
+          <th nzWidth="10%" nzAlign="center">Địa chỉ</th>
+          <th nzWidth="10%" nzAlign="center">CCCD/CMT</th>
+          <th nzWidth="10%" nzAlign="center">Số điện thoại</th>
+          <th nzWidth="25%" nzAlign="center">Hành động</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td nzAlign="center"></td>
-          <td nzAlign="center">{{data.room_name}}</td>
-          <td nzAlign="center">{{data.price}}</td>
-          <td nzAlign="center">{{data.location}}</td>
+          <td nzAlign="center">{{ data.id }}</td>
+          <td nzAlign="center">{{data.username}}</td>
+          <td nzAlign="center">{{data.full_name}}</td>
+          <td nzAlign="center">{{data.address}}</td>
+          <td nzAlign="center">{{data.id_card}}</td>
+          <td nzAlign="center">{{data.tel}}</td>
           <td nzAlign="center">
-            <button nz-button nzType="primary" style="margin-right: 10px;"><i nz-icon nzType="edit" nzTheme="fill"></i></button>
-            <button nz-button nzType="primary" nzDanger><i nz-icon nzType="delete" nzTheme="fill"></i></button>
+            <button nz-button nzType="primary" style="margin-right: 10px;" (click)="updateRequest(data.id)">Chấp nhận</button>
+            <button nz-button nzType="primary" nzDanger>Từ chối</button>
           </td>
         </tr>
       </tbody>
     </nz-table>
   </div>
 </nz-card>
-

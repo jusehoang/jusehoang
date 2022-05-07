@@ -6,6 +6,7 @@ import { LoginComponent } from "../../auth/login/login.component";
 import { RegisterComponent } from "../../auth/register/register.component";
 import { HistoryBookRoomComponent } from "../../customer/history-book-room/history-book-room.component";
 import { ManageBookRoomComponent } from "../../customer/manage-book-room/manage-book-room.component";
+import { RequestToStoreComponent } from "../../customer/request-to-store/request-to-store.component";
 import { HomeComponent } from "./home.component";
 import { MainComponent } from "./main/main.component";
 import { RoomDetailComponent } from "./room-detail/room-detail.component";
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'manage-book-room',
         component: ManageBookRoomComponent
+      },
+      {
+        path: 'request-to-store',
+        component: RequestToStoreComponent
       },
       { path: '',   redirectTo: 'home', pathMatch: 'full' }
     ]

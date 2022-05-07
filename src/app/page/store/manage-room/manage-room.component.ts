@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Room } from 'src/app/@core/models/room.model';
 import { RoomService } from 'src/app/@services/room.service';
@@ -14,6 +14,7 @@ export class ManageRoomComponent implements OnInit {
   isVisible = false;
   formAddRoom!: FormGroup;
   total = 0;
+  search = new FormControl();
   constructor(
     private fb: FormBuilder,
     private router: Router,

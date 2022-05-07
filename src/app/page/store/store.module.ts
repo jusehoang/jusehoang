@@ -14,6 +14,7 @@ import { ManageMonneyRoomComponent } from './manage-monney-room/manage-monney-ro
 import { ChangePasswordStoreComponent } from './change-password-store/change-password-store.component';
 import { EditProfileStoreComponent } from './edit-profile-store/edit-profile-store.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
+import { EditBillComponent } from './edit-bill/edit-bill.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddBillComponent } from './add-bill/add-bill.component';
     ManageMonneyRoomComponent,
     ChangePasswordStoreComponent,
     EditProfileStoreComponent,
-    AddBillComponent
+    AddBillComponent,
+    EditBillComponent
   ],
   imports: [
     ThemesModule,

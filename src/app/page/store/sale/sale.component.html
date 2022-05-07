@@ -2,7 +2,7 @@
 <nz-card>
   <h1>Thống kê doanh thu</h1>
   <nz-card style="box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;">
-    <nz-table #basicTable>
+    <nz-table #basicTable [nzData]="listBill">
       <thead>
         <tr>
           <th nzWidth="10%" nzAlign="center">Tháng</th>
@@ -17,18 +17,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td nzAlign="center"></td>
+          <td nzAlign="center">{{data.month}}/{{data.year}}</td>
           <td nzAlign="center">{{data.room_name}}</td>
-          <td nzAlign="center">{{data.customer}}</td>
-          <td nzAlign="center">{{data.price}}</td>
-          <td nzAlign="center">{{data.electricityPrice}}</td>
-          <td nzAlign="center">{{data.waterPrice}}</td>
-          <td nzAlign="center">{{data.networkPrice}}</td>
-          <td nzAlign="center">{{data.total}}</td>
-          <td nzAlign="center">
-            <a nz-button nzType="default" style="margin-right: 10px;" [routerLink]="['/store', 'edit-room']" [queryParams]="{ id : data.id}"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
-            <button nz-button nzType="default"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
-          </td>
+          <td nzAlign="center">{{data.username}}</td>
+          <td nzAlign="center">{{data.room_price}}</td>
+          <td nzAlign="center">{{data.total_electric_price}}</td>
+          <td nzAlign="center">{{data.total_water_price}}</td>
+          <td nzAlign="center">{{data.total_network_price}}</td>
+          <td nzAlign="center">{{data.total_bill}}</td>
         </tr>
       </tbody>
     </nz-table>

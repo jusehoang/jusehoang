@@ -1,3 +1,4 @@
+import { EditBillComponent } from './edit-bill/edit-bill.component';
 import { SaleComponent } from './sale/sale.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'add-bill',
         component: AddBillComponent
+      },
+      {
+        path: 'edit-bill',
+        component: EditBillComponent
       },
       {
         path: '',

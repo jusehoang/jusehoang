@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Bill } from 'src/app/@core/models/bill.model';
+import { BookRoom } from 'src/app/@core/models/book-room.model';
 import { Room } from 'src/app/@core/models/room.model';
 import { RoomService } from 'src/app/@services/room.service';
 
@@ -10,7 +12,8 @@ import { RoomService } from 'src/app/@services/room.service';
 export class ManageBookRoomComponent implements OnInit {
   listRoom: Room[]= [];
   isVisible = false;
-  listMoney = [];
+  listMoney!: Bill[];
+  listBookRoom: BookRoom[]= [];
   constructor(
     private roomService: RoomService,
   ) { }
@@ -21,11 +24,19 @@ export class ManageBookRoomComponent implements OnInit {
       data.forEach((data) => {
         this.listRoom.push(data.room);
       })
-      console.log(this.listRoom)
+      console.log(this.listRoom);
+      this.listBookRoom = data;
     })
   }
 
   showMoneyBookRoom(data: Room) {
+    console.log(data);
+    const id = data.id;
+    this.listBookRoom.forEach(value => {
+      if(value.room.id === id) {
+        this.listMoney = value.bill
+      }
+    })
     this.isVisible = true;
   }
 

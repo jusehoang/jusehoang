@@ -10,4 +10,5 @@ export interface User {
   username?: string;
   password?: string;
   is_request: boolean;
+  is_active?: boolean;
 }

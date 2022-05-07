@@ -12,10 +12,10 @@
       <thead>
         <tr>
           <th nzWidth="20%" nzAlign="center">Ảnh phòng</th>
-          <th nzWidth="20%" nzAlign="center">Tên phòng</th>
+          <th nzWidth="15%" nzAlign="center">Tên phòng</th>
           <th nzWidth="15%" nzAlign="center">Giá</th>
-          <th nzWidth="35%" nzAlign="center">Địa chỉ</th>
-          <th nzWidth="10%" nzAlign="center">Hành động</th>
+          <th nzWidth="25%" nzAlign="center">Địa chỉ</th>
+          <th nzWidth="25%" nzAlign="center">Hành động</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +25,8 @@
           <td nzAlign="center">{{data.price}}</td>
           <td nzAlign="center">{{data.location }}</td>
           <td nzAlign="center">
-            <button nz-button nzType="primary">Trả phòng</button>
+            <button nz-button nzType="primary" (click)="addBill(data.id)" style="margin-right: 10px">Tạo hóa đơn</button>
+            <button nz-button nzType="primary" (click)="addBill(data.id)">Trả phòng</button>
           </td>
         </tr>
       </tbody>

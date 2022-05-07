@@ -9,6 +9,8 @@ import { UserService } from 'src/app/@services/user.service';
 })
 export class AdminHomeComponent implements OnInit {
   isLogin = false;
+  username: string | null = null;
+  avatar = '';
   constructor(private user: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -17,13 +19,25 @@ export class AdminHomeComponent implements OnInit {
       this.user.username = localStorage.getItem('username');
       this.user.role = localStorage.getItem('role');
       this.user.isLogin.next(true);
+      this.username = this.user.username;
+    }
+    const avatar = localStorage.getItem('avatar')
+    if(avatar) {
+      this.user.avatar.next(avatar);
     }
     this.user.isLogin.subscribe(user => this.isLogin = user);
+    this.user.avatar.subscribe(avatar => {
+      this.avatar = avatar;
+    })
   }
 
-  editProfile() {}
+  editProfile() {
+    this.router.navigateByUrl('/admin/edit-profile')
+  }
 
-  changePassword() {}
+  changePassword() {
+    this.router.navigateByUrl('/admin/change-password')
+  }
 
   logout() {
     localStorage.clear();

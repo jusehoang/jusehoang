@@ -38,9 +38,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('username', data.username);
         localStorage.setItem('role', data.role);
         localStorage.setItem('id', data.id);
+        localStorage.setItem('avatar', data.avatar);
         this.user.token = data.token;
         this.user.username = data.username;
         this.user.role = data.role;
+        this.user.avatar.next(data.avatar);
         if(this.user.role == 'ROLE_STORE'){
           this.router.navigate(['store']);
         }

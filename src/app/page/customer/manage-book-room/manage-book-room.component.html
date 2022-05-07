@@ -17,7 +17,7 @@
           <td style="text-align: center">{{data.room_name}}</td>
           <td style="text-align: center">{{data.price}}</td>
           <td style="text-align: center">{{data.store}}</td>
-          <td style="text-align: center">{{data.price}}</td>
+          <td style="text-align: center"></td>
           <td style="text-align: center"><button nz-button nzType="primary" (click)="showMoneyBookRoom(data)">Xem tiền trọ</button></td>
         </tr>
       </tbody>
@@ -33,18 +33,20 @@
             <th>Tiền phòng</th>
             <th>Tiền điện</th>
             <th>Tiền nước</th>
-            <th>Tiền điện</th>
+            <th>Tiền mạng</th>
             <th>Tổng tiền</th>
+            <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of basicTable.data">
-            <td></td>
-            <!-- <td>{{data.room_name}}</td>
-            <td>{{data.price}}</td>
-            <td>{{data.store}}</td>
-            <td>{{data.price}}</td> -->
-            <td><button nz-button nzType="primary" (click)="showMoneyBookRoom(data)">Xem tiền trọ</button></td>
+            <td>{{data.month}}/{{data.year}}</td>
+            <td>{{data.room_price}}</td>
+            <td>{{data.total_electric_price}}</td>
+            <td>{{data.total_water_price}}</td>
+            <td>{{data.total_network_price}}</td>
+            <td>{{data.total_bill}}</td>
+            <td>{{data.status == 'UNPAID' ? 'Chưa trả tiền' : 'Đã đóng tiền'}}</td>
           </tr>
         </tbody>
       </nz-table>
