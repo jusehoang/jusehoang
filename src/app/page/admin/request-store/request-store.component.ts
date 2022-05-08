@@ -4,6 +4,7 @@ import { Room } from 'src/app/@core/models/room.model';
 import { User } from 'src/app/@core/models/user.model';
 import { AdminService } from 'src/app/@services/admin.service';
 import { AuthService } from 'src/app/@services/auth.service';
+import { MessageService } from 'src/app/@services/message.service';
 
 @Component({
   selector: 'app-request-store',
@@ -15,7 +16,8 @@ export class RequestStoreComponent implements OnInit {
   total = 0;
   search: FormControl = new FormControl('');
   constructor(
-    private admin: AdminService
+    private admin: AdminService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -55,8 +57,28 @@ export class RequestStoreComponent implements OnInit {
 
   updateRequest(id: string| undefined) {
     if(id) {
-      this.admin.updateRequestStore(id, 'approved').subscribe(data => {
-        console.log(data);
+      this.admin.updateRequestStore(id, 'APPROVED').subscribe(data => {
+        this.messageService.showMessage({
+          content: 'Cập nhật thành công'
+        })
+        this.admin.getRequestStore(true).subscribe(data => {
+          this.listUser = data.data;
+          this.total = data.totalElement;
+        })
+      })
+    }
+  }
+
+  cancelRequest(id: string| undefined) {
+    if(id) {
+      this.admin.updateRequestStore(id, 'REJECT').subscribe(data => {
+        this.messageService.showMessage({
+          content: 'Cập nhật thành công'
+        })
+        this.admin.getRequestStore(true).subscribe(data => {
+          this.listUser = data.data;
+          this.total = data.totalElement;
+        })
       })
     }
   }

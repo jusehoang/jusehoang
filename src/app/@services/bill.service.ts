@@ -34,6 +34,19 @@ export class BillService {
     return this.httpClient.post(url, obj);
   }
 
+  createBillCheckout(id: string ,month: number, year: number, electric_number: number, water_number: number, net_number: number){
+    const url = environment.baseUrl + '/api/bill/check-out';
+    const obj = {
+      month: month,
+      year: year,
+      electric_number: electric_number,
+      water_number: water_number,
+      net_number: net_number,
+      room_id: id
+    }
+    return this.httpClient.put(url, obj);
+  }
+
   updateStatus(id: number){
     const obj = {
       id: id,

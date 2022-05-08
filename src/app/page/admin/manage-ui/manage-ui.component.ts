@@ -35,6 +35,7 @@ export class ManageUiComponent implements OnInit {
   handleOk(){
     this.carouselService.addCarousel(this.imageRoom).subscribe(data => {
       console.log(data);
+    }, (err) => {
       this.messageService.showMessage({
         content: 'Thêm ảnh thành công',
         type: 'success'
@@ -47,6 +48,8 @@ export class ManageUiComponent implements OnInit {
 
   deleteImage(id: string) {
     this.carouselService.deleteCarousel(id).subscribe(data => {
+      console.log(data);
+    }, (err) => {
       this.messageService.showMessage({
         content: 'Đã xóa thành công',
       })

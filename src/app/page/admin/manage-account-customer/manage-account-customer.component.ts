@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Room } from 'src/app/@core/models/room.model';
 import { User } from 'src/app/@core/models/user.model';
 import { AdminService } from 'src/app/@services/admin.service';
+import { MessageService } from 'src/app/@services/message.service';
 
 @Component({
   selector: 'app-manage-account-customer',
@@ -14,7 +15,8 @@ export class ManageAccountCustomerComponent implements OnInit {
   total = 0;
   search: FormControl = new FormControl('');
   constructor(
-    private admin: AdminService
+    private admin: AdminService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +57,14 @@ export class ManageAccountCustomerComponent implements OnInit {
   active(id: string | undefined) {
     if(id !== undefined) {
       this.admin.activeUser(id).subscribe(data => {
-        console.log(data);
+        this.admin.getAccountByAdminUser().subscribe(data => {
+          this.listUser = data.data;
+          this.total = data.totalElement;
+        })
+        this.messageService.showMessage({
+          content: 'Cập nhật thành công',
+          type: 'success'
+        })
       })
     }
   }

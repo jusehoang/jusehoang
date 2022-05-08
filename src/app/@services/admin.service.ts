@@ -143,7 +143,7 @@ export class AdminService {
 
   activeUser(status: string){
     const url = environment.baseUrl + '/api/account/in-active';
-    return this.httpClient.put(url, status)
+    return this.httpClient.put(url,{}, { params: { username: status}})
   }
 
   updateRequestStore(id: string, status: string){
@@ -151,7 +151,7 @@ export class AdminService {
       id: id,
       status: status
     }
-    const url = environment.baseUrl + '/api/update-to-store';
+    const url = environment.baseUrl + '/api/account/update-to-store';
     return this.httpClient.put(url, obj);
   }
 }

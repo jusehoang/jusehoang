@@ -26,10 +26,47 @@
           <td nzAlign="center">{{data.location }}</td>
           <td nzAlign="center">
             <button nz-button nzType="primary" (click)="addBill(data.id)" style="margin-right: 10px">Tạo hóa đơn</button>
-            <button nz-button nzType="primary" (click)="addBill(data.id)">Trả phòng</button>
+            <button nz-button nzType="primary" (click)="showModal(data.id)">Trả phòng</button>
           </td>
         </tr>
       </tbody>
     </nz-table>
   </div>
 </nz-card>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo hóa đơn" nzMaskClosable="false" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Tạo hóa đơn" nzWidth="60%">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form" (ngSubmit)="addBill1()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="month">Chọn tháng</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Tháng không được để trống">
+          <input nz-input type="number" formControlName="month" id="month"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="year">Chọn năm</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Năm không để trống!">
+          <input nz-input type="text" formControlName="year" id="year" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="water_price">Số nước</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Số nước không được để trống!">
+          <input nz-input type="text" formControlName="water_number" id="water_number" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="electric_price">Số điện</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Số điện không được để trống!">
+          <input nz-input type="text" formControlName="electric_number" id="electric_number" />
+        </nz-form-control>
+      </nz-form-item>
+      <!-- <div nz-row>
+        <div nz-col nzSpan="4"></div>
+        <div nz-oel nzSpan="18">
+          <button nz-button type="submit" nzType="primary">Tạo hóa đơn</button>
+          <a nz-button [routerLink]="['/store', 'manage-book-room']" nzType="default">Hủy</a>
+        </div>
+      </div> -->
+    </form>
+  </ng-container>
+</nz-modal>
