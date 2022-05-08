@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/@core/models/room.model';
+import { CarouselService } from 'src/app/@services/carousel.service';
 import { RoomService } from 'src/app/@services/room.service';
+import { Image } from 'src/app/@core/models/image.model';
 
 @Component({
   selector: 'app-main',
@@ -13,14 +15,19 @@ export class MainComponent implements OnInit {
   location = '';
   type='';
   number= '';
+  listCarousel!: Image[];
   constructor(
-    private roomService: RoomService
+    private roomService: RoomService,
+    private carouselService: CarouselService
   ) { }
 
   ngOnInit(): void {
     this.roomService.getAllRooms().subscribe(data1 => {
       this.listRoom = data1.data;
       this.total = data1.totalElement;
+    })
+    this.carouselService.getAllCarousel().subscribe(data1 => {
+      this.listCarousel = data1;
     })
   }
 

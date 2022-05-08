@@ -1,27 +1,15 @@
 <div class="main">
   <div class="carousel">
     <nz-carousel nzAutoPlay nzDots="false">
-      <div nz-carousel-content>
-        <img src="https://www.hotelgrandsaigon.com/wp-content/uploads/sites/227/2017/12/GRAND_SEDK_01.jpg" alt="">
-      </div>
-      <div nz-carousel-content>
-        <img src="https://www.hoteljob.vn/files/Anh-HTJ-Hong/mau-tam-trang%20tri-giuong-khach-san-dep-nhat-19.jpg" alt="">
-      </div>
-      <div nz-carousel-content>
-        <img src="https://ezcloud.vn/wp-content/uploads/2019/07/4649_abc-1.jpg" alt="">
-      </div>
-      <div nz-carousel-content>
-        <img src="https://dulichkhampha24.com/wp-content/uploads/2020/03/khach-san-da-nang-2-sao-gan-trung-tam-c.jpg" alt="">
+      <div nz-carousel-content *ngFor="let image of listCarousel">
+        <img [src]="image.image" alt="">
       </div>
     </nz-carousel>
   </div>
   <div class="search-bar">
     <nz-card>
-      <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
       <nz-space>
         <div class="location">
-          <!-- <i class="fas fa-map-marker-alt"></i>
-          <input nz-input placeholder="Basic usage" [(ngModel)]="location"/> -->
           <nz-input-group [nzAddOnBefore]="suffixIconSearch">
             <input type="text" nz-input [(ngModel)]="location" placeholder="Nhập khu vực tìm kiếm"/>
           </nz-input-group>
