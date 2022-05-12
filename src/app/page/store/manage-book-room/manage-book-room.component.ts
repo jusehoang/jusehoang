@@ -71,11 +71,17 @@ export class ManageBookRoomComponent implements OnInit {
         }
       });
     } else {
-        this.bill.createBillCheckout(this.id, this.form.value.month, this.form.value.year, this.form.value.electric_number, this.form.value.water_number, 1).subscribe(data => {
-          this.messageService.showMessage({
-            content: 'Bạn đã trả phòng thành công'
-          });
-          this
+        this.bill.createBillCheckout(this.id, this.form.value.month, this.form.value.year, this.form.value.electric_number, this.form.value.water_number, 1).subscribe({
+          next: (v) => {
+            this.messageService.showMessage({
+              content: 'Bạn đã trả phòng thành công'
+            });
+          },
+          error: (error) => {
+            this.messageService.showMessage({
+              content: error
+            })
+          }
         })
     }
   }

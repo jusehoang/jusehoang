@@ -21,10 +21,17 @@ export class RequestToStoreComponent implements OnInit {
   }
 
   requestToStore(){
-    this.adminService.requestToStore().subscribe(data => {
-      this.messageService.showMessage({
-        content: 'Bạn đã tạo yêu cầu thành công!'
-      })
+    this.adminService.requestToStore().subscribe({
+      next: (data) => {
+        this.messageService.showMessage({
+          content: 'Bạn đã tạo yêu cầu thành công!'
+        })
+      },
+      error: (data) => {
+        this.messageService.showMessage({
+          content: data
+        })
+      }
     })
   }
 }

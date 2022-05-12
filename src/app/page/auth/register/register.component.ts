@@ -79,12 +79,17 @@ export class RegisterComponent implements OnInit {
         avatar: "",
         is_request: false,
       };
-      this.authService.register(register).subscribe((data) => {
-        this.messageService.showMessage({
-          content: 'Bạn đã đăng kí thành công. Vui lòng đăng nhập để tiếp tục sử dụng.'
-        })
-      }, (error) => {
-        console.log(error)
+      this.authService.register(register).subscribe({
+        next: () => {
+          this.messageService.showMessage({
+            content: 'Bạn đã đăng kí thành công. Vui lòng đăng nhập để tiếp tục sử dụng.'
+          })
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: error
+          })
+        }
       })
     }
   }

@@ -56,15 +56,22 @@ export class ManageAccountCustomerComponent implements OnInit {
 
   active(id: string | undefined) {
     if(id !== undefined) {
-      this.admin.activeUser(id).subscribe(data => {
-        this.admin.getAccountByAdminUser().subscribe(data => {
-          this.listUser = data.data;
-          this.total = data.totalElement;
-        })
-        this.messageService.showMessage({
-          content: 'Cập nhật thành công',
-          type: 'success'
-        })
+      this.admin.activeUser(id).subscribe({
+        next: () => {
+          this.admin.getAccountByAdminUser().subscribe(data => {
+            this.listUser = data.data;
+            this.total = data.totalElement;
+          })
+          this.messageService.showMessage({
+            content: 'Cập nhật thành công',
+            type: 'success'
+          })
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thất bại vui lòng thử lại'
+          })
+        }
       })
     }
   }

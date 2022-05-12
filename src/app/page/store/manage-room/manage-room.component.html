@@ -2,7 +2,7 @@
   <div nz-row class="container">
     <div nz-col nzSpan="12" class="search">
       <input nz-input type="text" [formControl]="search" placeholder="Tìm kiếm">
-      <!-- <button nz-button nzType="primary"></button> -->
+      <button nz-button nzType="primary" style="margin-left: 10px;" (click)="searchRoom()">Tìm kiếm theo khu vực</button>
     </div>
     <div nz-col nzSpan="12" class="add-room">
       <a nz-button style="float: right" nzType="primary" [routerLink]="['/store', 'add-room']">THÊM MỚI PHÒNG</a>

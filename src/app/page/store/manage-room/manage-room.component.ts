@@ -42,4 +42,15 @@ export class ManageRoomComponent implements OnInit {
     this.router.navigate(['store', 'update-room'], {queryParams: {id : id}})
   }
 
+  searchRoom(){
+    const id = localStorage.getItem('id');
+    if(id){
+      this.roomService.getRoomByStore(id, this.search.value).subscribe(data1 => {
+        this.listRoom = data1.data;
+        this.total = data1.totalElement;
+        console.log(this.total);
+      })
+    }
+  }
+
 }

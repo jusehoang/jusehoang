@@ -92,10 +92,6 @@ export class EditProfileAdminComponent implements OnInit {
         }
       });
     } else {
-      // let avatar = '';
-      // this.user.avatar.subscribe((data) => {
-      //   avatar = data;
-      // });
       const user: User = {
         username: this.form.value.user_name,
         full_name: this.form.value.full_name,
@@ -108,13 +104,19 @@ export class EditProfileAdminComponent implements OnInit {
         role: localStorage.getItem('role') || '',
       };
       console.log(user)
-      this.auth.updateUser(user).subscribe((data) => {
-        this.messageService.showMessage({
-          content: 'Cập nhật thông tin thành công',
-          type: 'success',
-        });
-        // this.user.avatar.next()
-        this.router.navigateByUrl('/admin');
+      this.auth.updateUser(user).subscribe({
+        next: () => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thông tin thành công',
+            type: 'success',
+          });
+          this.router.navigateByUrl('/admin');
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: 'Cập nhật Thất bại vui lòng thử lại',
+          });
+        }
       });
     }
   }

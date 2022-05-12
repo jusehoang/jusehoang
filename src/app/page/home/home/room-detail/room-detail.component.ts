@@ -69,8 +69,17 @@ export class RoomDetailComponent implements OnInit {
       });
     } else {
       if(this.id != null){
-        this.roomService.bookRoom(this.id, 'approved', this.formBookRoom.value.startDate, this.formBookRoom.value.note).subscribe(data => {
-          console.log(data);
+        this.roomService.bookRoom(this.id, 'approved', this.formBookRoom.value.startDate, this.formBookRoom.value.note).subscribe({
+          next: () => {
+            this.message.showMessage({
+              content: 'Bạn đã đặt phòng thành công'
+            })
+          },
+          error: (error) => {
+            this.message.showMessage({
+              content: error
+            })
+          }
         });
       }
     }

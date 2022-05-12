@@ -133,12 +133,19 @@ export class EditProfileStoreComponent implements OnInit {
           is_request: true,
           role: localStorage.getItem('role') || ''
         }
-        this.auth.updateUser(user).subscribe(data => {
-          this.messageService.showMessage({
-            content: 'Cập nhật thông tin thành công',
-            type: 'success'
-          });
-          this.router.navigateByUrl('/home')
+        this.auth.updateUser(user).subscribe({
+          next: (data) => {
+            this.messageService.showMessage({
+              content: 'Cập nhật thông tin thành công',
+              type: 'success'
+            });
+            this.router.navigateByUrl('/home');
+          },
+          error: (data) => {
+            this.messageService.showMessage({
+              content: data
+            })
+          }
         });
       }
     }

@@ -57,28 +57,42 @@ export class RequestStoreComponent implements OnInit {
 
   updateRequest(id: string| undefined) {
     if(id) {
-      this.admin.updateRequestStore(id, 'APPROVED').subscribe(data => {
-        this.messageService.showMessage({
-          content: 'Cập nhật thành công'
-        })
-        this.admin.getRequestStore(true).subscribe(data => {
-          this.listUser = data.data;
-          this.total = data.totalElement;
-        })
+      this.admin.updateRequestStore(id, 'APPROVED').subscribe({
+        next: () => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thành công'
+          })
+          this.admin.getRequestStore(true).subscribe(data => {
+            this.listUser = data.data;
+            this.total = data.totalElement;
+          })
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thất bại vui lòng thử lại'
+          })
+        }
       })
     }
   }
 
   cancelRequest(id: string| undefined) {
     if(id) {
-      this.admin.updateRequestStore(id, 'REJECT').subscribe(data => {
-        this.messageService.showMessage({
-          content: 'Cập nhật thành công'
-        })
-        this.admin.getRequestStore(true).subscribe(data => {
-          this.listUser = data.data;
-          this.total = data.totalElement;
-        })
+      this.admin.updateRequestStore(id, 'REJECT').subscribe({
+        next: () => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thành công'
+          })
+          this.admin.getRequestStore(true).subscribe(data => {
+            this.listUser = data.data;
+            this.total = data.totalElement;
+          })
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thất bại vui lòng thử lại'
+          })
+        }
       })
     }
   }

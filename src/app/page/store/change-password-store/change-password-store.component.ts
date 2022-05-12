@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/@services/auth.service';
+import { MessageService } from 'src/app/@services/message.service';
 import { UserService } from 'src/app/@services/user.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ChangePasswordStoreComponent implements OnInit {
   passwordVisible = false;
   passwordVisible1 = false;
   passwordVisible2 = false;
-  constructor(private fb: FormBuilder, private authService: AuthService, private user: UserService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private user: UserService, private messageService: MessageService) {
     this.form = fb.group({
       oldPassword: ['', Validators.required],
       password: ['', Validators.required],
@@ -49,10 +50,17 @@ export class ChangePasswordStoreComponent implements OnInit {
       const username = this.user.username;
       if(username){
         console.log('ok');
-        this.authService.changePassword(username ,this.form.value.oldPassword, this.form.value.password).subscribe(data => {
-          console.log(data);
-        }, error => {
-          console.log(error);
+        this.authService.changePassword(username ,this.form.value.oldPassword, this.form.value.password).subscribe({
+          next: (value) => {
+            this.messageService.showMessage({
+              content: "Thay đổi mật khẩu thành công"
+            })
+          },
+          error: (error) => {
+            this.messageService.showMessage({
+              content: "Thay đổi mật khẩu thất bại. Vui lòng thử lại"
+            })
+          }
         })
       }
 

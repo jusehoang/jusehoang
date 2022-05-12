@@ -133,17 +133,23 @@ export class EditProfileComponent implements OnInit {
           id_card: this.form.value.id_card,
           avatar: this.form.value.avatar,
           is_request: true,
-          // role: localStorage.getItem('role') || ''
         }
-        this.auth.updateUser(user).subscribe(data => {
-          this.messageService.showMessage({
-            content: 'Cập nhật thông tin thành công',
-            type: 'success'
-          });
-          if(data.avatar){
-            this.user.avatar.next(data.avatar);
+        this.auth.updateUser(user).subscribe({
+          next: (data) => {
+            this.messageService.showMessage({
+              content: 'Cập nhật thông tin thành công',
+              type: 'success'
+            });
+            if(data.avatar){
+              this.user.avatar.next(data.avatar);
+            }
+            this.router.navigateByUrl('/home')
+          },
+          error: (error) => {
+            this.messageService.showMessage({
+              content: error
+            })
           }
-          this.router.navigateByUrl('/home')
         });
       }
     }

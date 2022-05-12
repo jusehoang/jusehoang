@@ -17,9 +17,12 @@ export class ManageMonneyRoomComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.billService.getBill("UNPAID").subscribe(data => {
-      this.listBill = data.content;
-    })
+    const id = localStorage.getItem('id')
+    if(id){
+      this.billService.getSale(id).subscribe(data => {
+        this.listBill = data.list_bill.filter((item) => item.status == 'UNPAID')
+      })
+    }
   }
 
   updateBill(id: number) {

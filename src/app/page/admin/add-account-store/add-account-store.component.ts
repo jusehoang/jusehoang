@@ -82,13 +82,19 @@ export class AddAccountStoreComponent implements OnInit {
         password: this.form.value.password
       };
       console.log(user)
-      this.adminService.addAccountByAdminToStore(user).subscribe((data) => {
-        this.messageService.showMessage({
-          content: 'Cập nhật thông tin thành công',
-          type: 'success',
-        });
-        // this.user.avatar.next()
-        this.router.navigateByUrl('/admin/manage-account-store');
+      this.adminService.addAccountByAdminToStore(user).subscribe({
+        next: () => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thông tin thành công',
+            type: 'success',
+          });
+          this.router.navigateByUrl('/admin/manage-account-store');
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thất bại vui lòng thử lại',
+          });
+        }
       });
     }
   }

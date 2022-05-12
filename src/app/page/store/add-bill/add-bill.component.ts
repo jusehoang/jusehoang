@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BillService } from 'src/app/@services/bill.service';
+import { MessageService } from 'src/app/@services/message.service';
 
 @Component({
   selector: 'app-add-bill',
@@ -13,7 +14,7 @@ export class AddBillComponent implements OnInit {
   dateFormat='MM';
   date = '';
   id!: string | null;
-  constructor(private fb: FormBuilder, private bill: BillService, private activeRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private bill: BillService, private activeRoute: ActivatedRoute, private messageService: MessageService) {
     this.form = fb.group({
       month: ['', Validators.required],
       year: ['', Validators.required],
@@ -41,8 +42,17 @@ export class AddBillComponent implements OnInit {
       });
     } else {
       if(this.id !== null){
-        this.bill.createBill(this.id, this.form.value.month, this.form.value.year, this.form.value.electric_number, this.form.value.water_number, 1).subscribe(data => {
-          console.log(data);
+        this.bill.createBill(this.id, this.form.value.month, this.form.value.year, this.form.value.electric_number, this.form.value.water_number, 1).subscribe({
+          next: () => {
+            this.messageService.showMessage({
+              content: 'Tạo hóa đơn thành công'
+            })
+          },
+          error: (error) => {
+            this.messageService.showMessage({
+              content: error
+            })
+          }
         })
       }
     }

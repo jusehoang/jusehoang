@@ -33,29 +33,38 @@ export class ManageUiComponent implements OnInit {
   }
 
   handleOk(){
-    this.carouselService.addCarousel(this.imageRoom).subscribe(data => {
-      console.log(data);
-    }, (err) => {
-      this.messageService.showMessage({
-        content: 'Thêm ảnh thành công',
-        type: 'success'
-      });
-      this.carouselService.getAllCarousel().subscribe(data => {
-        this.listImage = data;
-      })
+    this.carouselService.addCarousel(this.imageRoom).subscribe({
+      next: () => {
+        this.messageService.showMessage({
+          content: 'Thêm ảnh thành công',
+          type: 'success'
+        });
+        this.carouselService.getAllCarousel().subscribe(data => {
+          this.listImage = data;
+        })
+      },
+      error: (error) => {
+        this.messageService.showMessage({
+          content: 'Thêm ảnh thất bại. Vui lòng thử lại'
+        })
+      }
     })
   }
 
   deleteImage(id: string) {
-    this.carouselService.deleteCarousel(id).subscribe(data => {
-      console.log(data);
-    }, (err) => {
-      this.messageService.showMessage({
+    this.carouselService.deleteCarousel(id).subscribe({
+      next: () => {
+        this.messageService.showMessage({
         content: 'Đã xóa thành công',
-      })
-      this.carouselService.getAllCarousel().subscribe(data => {
-        this.listImage = data;
-      })
+        })
+        this.carouselService.getAllCarousel().subscribe(data => {
+          this.listImage = data;
+        })},
+      error: () => {
+        this.messageService.showMessage({
+          content: 'Thêm ảnh bị lỗi vui lòng thử lại'
+        })
+      }
     })
   }
 

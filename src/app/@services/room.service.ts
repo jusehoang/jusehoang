@@ -53,10 +53,14 @@ export class RoomService {
     }});
   }
 
-  getRoomByStore(id: string): Observable<{data: Room[], totalElement: number}>{
+  getRoomByStore(id: string, location?: string): Observable<{data: Room[], totalElement: number}>{
     const url = environment.baseUrl + '/api/room';
+    let locationRoom = "";
+    if(location){
+      locationRoom = location;
+    }
     return this.httpClient.get<{data: Room[], totalElement: number}>(url, { params: {
-      page: 1,size: 10, store: id
+      page: 1,size: 10, store: id, location: locationRoom
     }});
   }
 

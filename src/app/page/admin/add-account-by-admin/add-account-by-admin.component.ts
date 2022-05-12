@@ -85,15 +85,21 @@ export class AddAccountByAdminComponent implements OnInit {
         role: 'ROLE_USER',
         password: this.form.value.password
       };
-      console.log(user)
-      this.adminService.addAccountByAdminToUser(user).subscribe((data) => {
-        this.messageService.showMessage({
-          content: 'Cập nhật thông tin thành công',
-          type: 'success',
+      this.adminService.addAccountByAdminToUser(user).subscribe({
+        next: () => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thông tin thành công',
+            type: 'success',
+          });
+          // this.user.avatar.next()
+          this.router.navigateByUrl('/admin/manage-account-customer');
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: 'Cập nhật thất bại vui lòng thử lại',
+          });
+        }
         });
-        // this.user.avatar.next()
-        this.router.navigateByUrl('/admin/manage-account-customer');
-      });
     }
   }
 

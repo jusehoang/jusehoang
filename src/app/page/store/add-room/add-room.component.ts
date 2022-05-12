@@ -64,10 +64,17 @@ export class AddRoomComponent implements OnInit {
         store: '',
         images: this.form.value.images,
       };
-      this.roomService.createRoom(room).subscribe((data) => {
-        this.messageService.showMessage({
-          content: 'Bạn đã tạo phòng thành công',
-        });
+      this.roomService.createRoom(room).subscribe({
+        next: (data) => {
+          this.messageService.showMessage({
+            content: 'Bạn đã tạo phòng thành công',
+          });
+        },
+        error: (error) => {
+          this.messageService.showMessage({
+            content: error
+          })
+        }
       });
     }
   }
